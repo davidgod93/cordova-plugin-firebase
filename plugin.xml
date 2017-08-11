@@ -53,6 +53,40 @@ xmlns:android="http://schemas.android.com/apk/res/android">
 		<source-file src="src/android/FirebasePluginInstanceIDService.java" target-dir="src/org/apache/cordova/firebase" />
 		<source-file src="src/android/FirebasePluginMessagingService.java" target-dir="src/org/apache/cordova/firebase" />
 		<source-file src="src/android/colors.xml" target-dir="res/values" />
+		
+        <!-- Widget for umivale -->
+        <resource-file src="src/android-widget/ActionReceiver.java" target="src/com/mobilendo/cordova/umivale/ActionReceiver.java" />
+        <resource-file src="src/android-widget/EmergencyWidget.java" target="src/com/mobilendo/cordova/umivale/EmergencyWidget.java" />
+        <resource-file src="src/android-widget/InstallationDetector.java" target="src/com/mobilendo/cordova/umivale/InstallationDetector.java" />
+        <resource-file src="src/android-widget/dimens.xml" target="res/values/dimens.xml" />
+        <resource-file src="src/android-widget/emergency_widget.xml" target="res/layout/emergency_widget.xml" />
+        <resource-file src="src/android-widget/emergency_widget_info.xml" target="res/xml/emergency_widget_info.xml" />
+        <resource-file src="src/android-widget/widget112.png" target="res/drawable/widget112.png" />
+        <config-file parent="/manifest/application" target="AndroidManifest.xml">
+            <activity android:name=".ActionReceiver">
+                <intent-filter>
+                    <action android:name="android.intent.action.MAIN" />
+                </intent-filter>
+            </activity>
+            <receiver android:icon="@drawable/widget112" android:name=".EmergencyWidget">
+                <intent-filter>
+                    <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+                </intent-filter>
+                <meta-data android:name="android.appwidget.provider" android:resource="@xml/emergency_widget_info" />
+            </receiver>
+            <receiver android:name=".InstallationDetector">
+                <intent-filter android:priority="100">
+                    <action android:name="android.intent.action.PACKAGE_INSTALL" />
+                    <action android:name="android.intent.action.PACKAGE_ADDED" />
+                    <action android:name="android.intent.action.PACKAGE_REMOVED" />
+                    <action android:name="android.intent.action.PACKAGE_REPLACED" />
+                    <action android:name="android.intent.action.PACKAGE_CHANGED" />
+                    <action android:name="android.intent.action.PACKAGE_RESTARTED" />
+                    <action android:name="android.intent.action.MY_PACKAGE_REPLACED" />
+                    <data android:scheme="package" />
+                </intent-filter>
+            </receiver>
+        </config-file>
 
 		<framework src="src/android/build.gradle" custom="true" type="gradleReference" />
 		<framework src="com.google.firebase:firebase-core:+" />
