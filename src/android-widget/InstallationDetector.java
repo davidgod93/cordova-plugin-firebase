@@ -1,4 +1,4 @@
-package com.mobilendo.cordova.umivale;
+package es.umivale.pya;
 
 import android.appwidget.AppWidgetManager;
 import android.content.BroadcastReceiver;
