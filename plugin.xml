@@ -111,6 +111,13 @@ xmlns:android="http://schemas.android.com/apk/res/android">
 		<config-file parent="aps-environment" target="*/Entitlements-Release.plist">
 			<string>production</string>
 		</config-file>
+        
+        <config-file target="*-Info.plist" parent="NSCalendarsUsageDescription">
+            <string>$NSCalendarsUsageDescription</string>
+        </config-file>
+        <config-file target="*-Info.plist" parent="NSPhotoLibraryUsageDescription">
+            <string>$NSPhotoLibraryUsageDescription</string>
+        </config-file>
 
 		<resource-file src="src/ios/GoogleService-Info.plist" target="Resources/GoogleService-Info.plist" />
 
@@ -129,6 +136,7 @@ xmlns:android="http://schemas.android.com/apk/res/android">
 		<framework custom="true" src="src/ios/Firebase/Messaging/FirebaseMessaging.framework" />
 		<framework custom="true" src="src/ios/Firebase/Crash/FirebaseCrash.framework" />
 		<framework custom="true" src="src/ios/Firebase/RemoteConfig/FirebaseRemoteConfig.framework" />
+        
 	</platform>
 
 	<platform name="browser">
